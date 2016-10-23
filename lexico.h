@@ -9,9 +9,12 @@ struct token
 {
     char *nome;
     char *valor;
+    int linha;
+    int coluna;
 };
 typedef struct token Token;
 
+void inicializa(FILE * file);
 
 Token getToken();
 
