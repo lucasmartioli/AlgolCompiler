@@ -3,7 +3,6 @@
 //
 
 #include <malloc.h>
-#include <string.h>
 #include "lexico.h"
 
 /**
@@ -34,15 +33,17 @@ int caracterAtualEhUmSeparador(){
     return 0;
 }
 
+char *toString(char *caracter){
+    char *retorno = caracter;
+    return retorno;
+}
 void adicionaCaracterAoToken(){
-    if(tokenAtual->valor == NULL)
-        tokenAtual->valor = &caracterAtual;
+    if(tokenAtual->valor == NULL) {
 
-    else{
-        //concatenar caracterAtual na string
     }
+    else{
 
-
+    }
 }
 
 void readToken(){
