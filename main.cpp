@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <string.h>
 #include "lexico.h"
 
 int main(int argc, char *argv[]) {
@@ -16,11 +17,17 @@ int main(int argc, char *argv[]) {
 
     Token t = getToken();
 
-    std::cout << t.valor << std::endl;
-    if(t.valor != "BEGIN")
-        std::cout << "ERRO. Eu esperava um BEGIN." << std::endl;
+    printf("\n%s\n", t.valor);
+    if(!strcmp("BEGIN", t.valor))
+        printf("\nSUCESSO\n");
 
-    std::cout << "FIM!" << std::endl;
+    t = getToken();
+    printf("\n%s\n", t.valor);
+    if(!strcmp("END", t.valor))
+        printf("\nSUCESSO\n");
+
+
+    printf("FIM");
 
     fclose(f);
     return 0;

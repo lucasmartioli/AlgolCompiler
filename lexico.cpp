@@ -3,6 +3,7 @@
 //
 
 #include <malloc.h>
+#include <string.h>
 #include "lexico.h"
 
 /**
@@ -18,7 +19,7 @@ Token *tokenAtual;
 FILE * file;
 char caracterAtual;
 
-char separadores[] = {'='};
+char separadores[] = {'=', '\n', '.', EOF};
 
 void readChar(){
     caracterAtual = fgetc(file);
@@ -33,33 +34,50 @@ int caracterAtualEhUmSeparador(){
     return 0;
 }
 
-char *toString(char *caracter){
-    char *retorno = caracter;
+char *toString(char caracter){
+    char retorno[2];
+    retorno[0] = caracter;
+    retorno[1] = '\0';
+
     return retorno;
 }
+
 void adicionaCaracterAoToken(){
-    if(tokenAtual->valor == NULL) {
+    if(tokenAtual->valor == NULL)
+        tokenAtual->valor = "";
 
-    }
-    else{
+    char* a = tokenAtual->valor;
 
-    }
+    char b[2];
+    b[0] = !caracterAtualEhUmSeparador() ? caracterAtual : '\000';
+    b[1] = '\0';
+
+    size_t ta = strlen(a)+strlen(b)+1;
+    char* r = (char*)malloc(ta);
+    strcpy(r, a);
+    strcat(r, b);
+
+    tokenAtual->valor = r;
 }
 
 void readToken(){
-    while(!caracterAtualEhUmSeparador()){
+    do{
         readChar();
+    } while (caracterAtualEhUmSeparador());
+
+
+    while(!caracterAtualEhUmSeparador()){
         adicionaCaracterAoToken();
+        readChar();
     }
 }
 
 Token getToken(){
-    Token *token = (Token *) malloc(sizeof(Token));
+    tokenAtual = (Token *) malloc(sizeof(Token));
     readToken();
-    return *token;
+    return *tokenAtual;
 }
 
 void inicializa(FILE * f){
     file = f;
-    tokenAtual = (Token *) malloc(sizeof(Token));
 }
