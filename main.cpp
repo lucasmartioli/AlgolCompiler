@@ -16,15 +16,12 @@ int main(int argc, char *argv[]) {
     inicializa(f);
 
     Token t = getToken();
+    printf("\nToken.valor >%s<", t.valor);
 
-    printf("\n%s\n", t.valor);
-    if(!strcmp("BEGIN", t.valor))
-        printf("\nSUCESSO\n");
-
-    t = getToken();
-    printf("\n%s\n", t.valor);
-    if(!strcmp("END", t.valor))
-        printf("\nSUCESSO\n");
+    while(strcmp(".", t.valor)){
+        t = getToken();
+        printf("\nToken.valor>%s<", t.valor);
+    }
 
 
     printf("FIM");
