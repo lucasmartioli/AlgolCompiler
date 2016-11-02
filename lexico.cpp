@@ -5,6 +5,7 @@
 #include <malloc.h>
 #include <string.h>
 #include "lexico.h"
+#include "matchers.h"
 
 /**
  * receber um ponteiro de arquivo,
@@ -87,12 +88,15 @@ void readToken() {
         adicionaCaracterAoToken();
         readChar();
     }
-
 }
 
 Token getToken() {
     tokenAtual = (Token *) malloc(sizeof(Token));
     readToken();
+
+    //if(isInteiro(tokenAtual->valor))
+    //    printf("%s é inteiro", tokenAtual->valor);
+
     return *tokenAtual;
 }
 

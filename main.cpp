@@ -27,6 +27,8 @@ int main(int argc, char *argv[]) {
     printf("FIM");
 
     fclose(f);
+
+
     return 0;
 }
 
