@@ -3,5 +3,5 @@ project(AlgolCompiler)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp lexico.cpp lexico.h)
+set(SOURCE_FILES main.cpp lexico.cpp lexico.h matchers.cpp matchers.h)
 add_executable(AlgolCompiler ${SOURCE_FILES})
